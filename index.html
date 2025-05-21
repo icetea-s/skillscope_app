@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔐 Future Cybersecurity Skills – POC Demo</title>
+  <style>
+    /* Reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; background: #121212; color: #e0e0e0; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Container */
+    .container { width: 90%; max-width: 1200px; margin: 2rem auto; background: #1e1e1e; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+
+    /* Header */
+    header { text-align: center; margin-bottom: 2rem; }
+    header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    header p, header ul { color: #ccc; }
+    header ul { list-style: none; padding-left: 0; display: inline-block; text-align: left; }
+    header ul li::before { content: '• '; color: #888; }
+
+    /* Tabs */
+    .tabs { display: flex; flex-wrap: wrap; justify-content: center; border-bottom: 2px solid #444; margin-bottom: 1rem; }
+    .tab { padding: 0.75rem 1rem; cursor: pointer; margin: 0 0.25rem; background: #2c2c2c; color: #e0e0e0; border-radius: 8px 8px 0 0; }
+    .tab.active { background: #1e1e1e; font-weight: bold; border-bottom: 2px solid #1e1e1e; }
+
+    .tab-content { display: none; animation: fadeIn 0.3s ease-in; max-width: 800px; margin: 0 auto; }
+    .tab-content.active { display: block; }
+
+    /* Section headers & lists */
+    h2 { margin-top: 1rem; margin-bottom: 0.5rem; font-size: 1.5rem; }
+    h3 { margin-top: 1rem; margin-bottom: 0.5rem; }
+    ul { margin-top: 0.5rem; margin-left: 1.25rem; list-style: disc; color: #ddd; }
+
+    /* Footer */
+    footer { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #444; font-size: 0.9rem; color: #888; }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .tab { font-size: 0.9rem; padding: 0.5rem; }
+    }
+
+    /* Animation */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔐 Future Cybersecurity Skills – POC Demo</h1>
+      <p>Welcome to our project demo for <strong>predicting future skill needs in cybersecurity</strong>. This is a proof-of-concept for how companies can align with upcoming trends.</p>
+      <p>Use the tabs below to explore:</p>
+      <ul>
+        <li>📊 Skill trends from past data</li>
+        <li>🏢 Company-specific skill gaps</li>
+        <li>🧭 Strategic workforce recommendations</li>
+      </ul>
+    </header>
+
+    <!-- Tabs navigation -->
+    <div class="tabs">
+      <div class="tab active" data-tab="trends">📊 Skill Trends</div>
+      <div class="tab" data-tab="fit">🏢 Company Fit</div>
+      <div class="tab" data-tab="recs">🧭 Recommendations</div>
+    </div>
+
+    <!-- Tab contents -->
+    <div id="trends" class="tab-content active">
+      <h2>Top Emerging Skills (2023–2025)</h2>
+      <p>These are the cybersecurity skills showing strong growth signals.</p>
+      <img src="images/skill_trend_chart.png" alt="Sample skill trends" />
+      <h3>Example skills:</h3>
+      <ul>
+        <li>Zero Trust Architecture</li>
+        <li>Threat Modeling</li>
+        <li>Quantum Cryptography</li>
+      </ul>
+    </div>
+
+    <div id="fit" class="tab-content">
+      <h2>Company: SecureFuture AB</h2>
+      <p>A fictional company focused on cloud security and SOC automation.</p>
+      <p><strong>Current workforce size:</strong> 50<br /><strong>Strategic goal:</strong> Full Zero Trust rollout by 2025</p>
+      <img src="images/skill_gap_chart.png" alt="Skill gap analysis" />
+      <h3>Top gaps identified:</h3>
+      <ul>
+        <li>🟥 Zero Trust Design (+3 staff needed)</li>
+        <li>🟨 AI-assisted Threat Detection (+2)</li>
+        <li>🟩 Cloud Security (no gap)</li>
+      </ul>
+    </div>
+
+    <div id="recs" class="tab-content">
+      <h2>What Should the Company Do?</h2>
+      <ul>
+        <li>✅ <strong>Upskill Internal Teams</strong><br />Train 3 current staff in Zero Trust Architecture<br />Offer certifications in AI-driven threat detection</li>
+        <li>✅ <strong>New Hires</strong><br />Recruit 2 experts in threat modeling with experience in automation tools</li>
+        <li>✅ <strong>Long-term Strategy</strong><br />Track trends quarterly<br />Use skill forecasting in hiring plans</li>
+      </ul>
+    </div>
+
+    <footer>
+      <p>📅 May 2025 · A Project Management Course POC · Made with ❤️ and Web Technologies</p>
+    </footer>
+  </div>
+
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Deactivate all tabs & contents
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        // Activate selected
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
