@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,8 +12,18 @@
 
   <style>
     /* --- 1. RESET --------------------------------------------------------- */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body         { height: 100%; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
 
     /* --- 2. LAYOUT WRAPPER ----------------------------------------------- */
     body {
@@ -30,7 +41,7 @@
     #container {
       background: #f7fbff;
       border-radius: 16px;
-      box-shadow: 0 6px 24px rgba(0,0,0,.06);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, .06);
       padding: var(--gap);
       height: calc(100vh - (var(--gap) * 2));
       width: 100%;
@@ -48,28 +59,67 @@
     /* --- 4. UTILITY CARD STYLE ------------------------------------------- */
     .card {
       background: #ffffff;
-      border: 1px solid rgba(0,0,0,.08);
+      border: 1px solid rgba(0, 0, 0, .08);
       border-radius: 12px;
       padding: var(--gap);
-      box-shadow: 0 2px 6px rgba(0,0,0,.03);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .03);
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
-    .title-card  { grid-area: title; align-items: center; justify-content: center; padding: 10px 0; border: none; background-color: transparent; box-shadow: none;}
-    .forecast    { grid-area: forecast; }
-    .team        { grid-area: team; }
-    .project     { grid-area: project; }
-    .tabs        { grid-area: tabs; gap: var(--gap); }
+
+    .title-card {
+      grid-area: title;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      border: none;
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    .forecast {
+      grid-area: forecast;
+    }
+
+    .team {
+      grid-area: team;
+    }
+
+    .project {
+      grid-area: project;
+    }
+
+    .tabs {
+      grid-area: tabs;
+      gap: var(--gap);
+    }
 
     /* --- 5. HEADINGS ----------------------------------------------------- */
-    h1 { font-size: clamp(1.6rem, 2vw + .8rem, 2rem); }
-    h2 { font-size: 1.25rem; margin-bottom: 16px; }
-    h3 { margin-bottom: 10px; }
+    h1 {
+      font-size: clamp(1.6rem, 2vw + .8rem, 2rem);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
 
     /* --- 6. CHARTS -------------------------------------------------------- */
-    canvas { width: 100% !important; height: 100% !important; }
-    .chart-wrapper { flex: 1; position: relative; min-height: 0; }
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .chart-wrapper {
+      flex: 1;
+      position: relative;
+      min-height: 0;
+    }
 
     /* --- 7. PROJECT ALIGNMENT -------------------------------------------- */
     .projects {
@@ -79,17 +129,28 @@
       gap: var(--gap);
       align-content: flex-start;
     }
+
     .proj-card {
       background: #f8fafc;
-      border: 1px solid rgba(0,0,0,.05);
+      border: 1px solid rgba(0, 0, 0, .05);
       border-radius: 8px;
       padding: 16px;
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-    .proj-card h3 { font-size: .95rem; font-weight: 700; }
-    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .proj-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
     .badge {
       background: #e0f2fe;
       color: #0369a1;
@@ -98,9 +159,16 @@
       font-size: .7rem;
       font-weight: 500;
     }
-    .avatars { display: flex; gap: 6px; margin-top: auto; }
+
+    .avatars {
+      display: flex;
+      gap: 6px;
+      margin-top: auto;
+    }
+
     .avatar {
-      width: 32px; height: 32px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: #cbd5e1;
       display: grid;
@@ -110,73 +178,126 @@
     }
 
     /* --- 8. TABS (CONTAINER) -------------------------------------------- */
-    .tabs { display: flex; flex-direction: column; }
+    .tabs {
+      display: flex;
+      flex-direction: column;
+    }
+
     .tab-btn {
-      display: flex; align-items: center; gap: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       background: #ffffff;
-      border: 1px solid rgba(0,0,0,.08);
+      border: 1px solid rgba(0, 0, 0, .08);
       border-radius: 12px;
       padding: 14px 12px;
       font-weight: 600;
       color: #1e40af;
       cursor: pointer;
       transition: background .2s, color .2s;
+      font-size: 1.125rem;
     }
-    .tab-btn:hover:not(.active) { background: #f1f5f9; }
+
+    .tab-btn:hover:not(.active) {
+      background: #f1f5f9;
+    }
+
     .tab-btn.active {
       background: #3b82f6;
       color: #ffffff;
       border-color: #3b82f6;
     }
-    .tab-btn { flex: 1; }
+
+    .tab-btn {
+      flex: 1;
+    }
 
     /* --- 9. SLIDING VIEW PANEL ------------------------------------------ */
     #view-panel {
-      width: 100%; max-width: 1400px;
+      width: 100%;
+      max-width: 1400px;
       margin-top: var(--gap);
       display: none;
     }
+
     #view-panel.open {
       display: block;
       animation: slideDown 0.4s ease forwards;
     }
+
     @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0);  }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes slideUp {
-      from { opacity: 1; transform: translateY(0); }
-      to   { opacity: 0; transform: translateY(-20px); }
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
     }
 
     #view-panel .panel {
       background: #ffffff;
-      border: 1px solid rgba(0,0,0,.08);
+      border: 1px solid rgba(0, 0, 0, .08);
       border-radius: 12px;
       padding: var(--gap);
-      box-shadow: 0 6px 20px rgba(0,0,0,.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .05);
       max-height: 720px;
       min-height: 720px;
       height: 720px;
       overflow-y: auto;
       scrollbar-gutter: stable;
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       opacity: 0;
       animation: fadeIn 0.3s ease forwards;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     /* fade animations for content swap */
-    .content-fade-out { animation: fadeOut 0.2s ease forwards; }
-    .content-fade-in  { animation: fadeIn 0.3s ease forwards; }
-    @keyframes fadeOut {
-      to { opacity: 0; }
+    .content-fade-out {
+      animation: fadeOut 0.2s ease forwards;
     }
 
-    #view-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; color: #1e40af; }
+    .content-fade-in {
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+      }
+    }
+
+    #view-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1e40af;
+    }
 
     /* ==== UPDATED STYLES FOR CSV-LOADED PANEL ITEMS ==== */
     .panel-item {
@@ -187,6 +308,7 @@
       border-radius: 8px;
       padding: 12px;
     }
+
     .panel-item .panel-label {
       display: block;
       text-align: center;
@@ -195,13 +317,17 @@
       border-bottom: 1px solid #e2e8f0;
       padding-bottom: 6px;
       margin-bottom: 8px;
-      font-size: 1.2rem;     /* increased title font */
+      font-size: 1.2rem;
+      /* increased title font */
     }
+
     .panel-item .panel-desc {
       display: block;
-      text-align: center;    /* center the text */
+      text-align: center;
+      /* center the text */
       color: #475569;
-      font-size: 1.3rem;     /* text slightly larger than title */
+      font-size: 1.3rem;
+      /* text slightly larger than title */
     }
 
     /* --- 10. RESPONSIVE STACK (≤ 768 px) ------------------------------- */
@@ -217,55 +343,100 @@
         grid-template-rows: repeat(5, auto);
         height: auto;
       }
-      .tab-btn { flex: none; }
+
+      .tab-btn {
+        flex: none;
+      }
+    }
+
+    /* --- 11. TITLE CARD LOGO -------------------------------------------- */
+    .title-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--gap) 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .title-tagline {
+      margin-top: 0.5rem;
+      
+      font-size: 0.875rem;
+      
+      color: #475569;
+      
+      text-align: center;
+      font-style: italic;
+      
+    }
+
+    .title-logo {
+      max-height: 4rem;
+      width: auto;
+    }
+
+    @media (max-width: 768px) {
+      .title-logo {
+        max-height: 3rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <section id="container">
     <!-- 1️⃣ TITLE -->
-    <div class="card title-card"><h1>SkillSync</h1></div>
+    <div class="card title-card">
+      <img src="images/logo_pic.png" alt="SkillSync Logo" class="title-logo" />
+      <p class="title-tagline">Powering tomorrow’s talent, today</p>
+    </div>
 
     <!-- 2️⃣ FORECASTED SKILLS -->
     <div class="card forecast">
-      <h2>Forecasted Skills</h2>
+      <h2>Which skills will we need within the next year?
+      </h2>
       <div class="chart-wrapper"><canvas id="forecastChart"></canvas></div>
     </div>
 
     <!-- 3️⃣ TEAM READINESS RADAR -->
     <div class="card team">
-      <h2>Team Readiness</h2>
+      <h2>How far are we from the projected needs?</h2>
       <div class="chart-wrapper"><canvas id="radarChart"></canvas></div>
     </div>
 
     <!-- 4️⃣ PROJECT ALIGNMENT -->
     <div class="card project">
-      <h2>Project Alignment</h2>
+      <h2>Which employees are working on the ongoing projects?</h2>
       <div class="projects">
         <div class="proj-card">
           <h3>Cloud Migration</h3>
           <div class="badges"><span class="badge">Cloud Security</span><span class="badge">Encryption</span></div>
-          <div class="avatars"><span class="avatar">AH</span><span class="avatar">JS</span><span class="avatar">CX</span></div>
+          <div class="avatars"><span class="avatar">AH</span><span class="avatar">JS</span><span
+              class="avatar">CX</span></div>
         </div>
         <div class="proj-card">
           <h3>Vulnerability Management</h3>
           <div class="badges"><span class="badge">Penetration</span><span class="badge">Risk Assessment</span></div>
-          <div class="avatars"><span class="avatar">TR</span><span class="avatar">JG</span><span class="avatar">IW</span></div>
+          <div class="avatars"><span class="avatar">TR</span><span class="avatar">JG</span><span
+              class="avatar">IW</span></div>
         </div>
         <div class="proj-card">
           <h3>Network Monitoring</h3>
           <div class="badges"><span class="badge">Network SOC</span><span class="badge">SIEM</span></div>
-          <div class="avatars"><span class="avatar">SM</span><span class="avatar">RS</span><span class="avatar">TD</span></div>
+          <div class="avatars"><span class="avatar">SM</span><span class="avatar">RS</span><span
+              class="avatar">TD</span></div>
         </div>
       </div>
     </div>
 
     <!-- 5️⃣ ACTION TABS -->
     <div class="card tabs">
-      <button class="tab-btn" data-tab="upskill">⬆ <span>Who to Upskill</span></button>
-      <button class="tab-btn" data-tab="hire">👤 <span>Who to Hire</span></button>
-      <button class="tab-btn" data-tab="reassign">🔄 <span>Who to Reassign</span></button>
+      <button class="tab-btn" data-tab="upskill">⬆ <span>Who to upskill</span></button>
+      <button class="tab-btn" data-tab="hire">👤 <span>Who to hire</span></button>
+      <button class="tab-btn" data-tab="reassign">🔄 <span>Who to reassign</span></button>
     </div>
   </section>
 
@@ -294,8 +465,8 @@
       options: {
         maintainAspectRatio: false,
         indexAxis: 'y',
-        scales: { x:{display:false}, y:{ticks:{font:{size:14}}} },
-        plugins:{ legend:{display:false} }
+        scales: { x: { display: false }, y: { ticks: { font: { size: 14 } } } },
+        plugins: { legend: { display: false } }
       }
     });
 
@@ -303,32 +474,32 @@
     new Chart(radarCtx, {
       type: 'radar',
       data: {
-        labels: ['AI Sec','DevOp','Threat','Risk','Cloud','Network'],
-        datasets:[
+        labels: ['AI Sec', 'DevOps', 'Threat', 'Risk', 'Cloud', 'Network'],
+        datasets: [
           {
-            label:'Current',
-            data:[60,50,45,40,55,50],
-            borderColor:'#3b82f6',
-            backgroundColor:'rgba(59,130,246,.2)',
-            pointBackgroundColor:'#3b82f6'
+            label: 'Available skills',
+            data: [60, 50, 45, 40, 55, 50],
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59,130,246,.2)',
+            pointBackgroundColor: '#3b82f6'
           },
           {
-            label:'Expected Gap',
-            data:[80,70,65,60,75,70],
-            borderColor:'#fb7185',
-            backgroundColor:'rgba(251,113,133,.2)',
-            pointBackgroundColor:'#fb7185'
+            label: 'Projected skill needs',
+            data: [80, 70, 65, 60, 75, 70],
+            borderColor: '#fb7185',
+            backgroundColor: 'rgba(251,113,133,.2)',
+            pointBackgroundColor: '#fb7185'
           }
         ]
       },
-      options:{ maintainAspectRatio:false }
+      options: { maintainAspectRatio: false }
     });
 
     /* Tab & CSV logic with scroll fix */
-    const tabs        = document.querySelectorAll('.tab-btn');
-    const viewPanel   = document.getElementById('view-panel');
+    const tabs = document.querySelectorAll('.tab-btn');
+    const viewPanel = document.getElementById('view-panel');
     const viewContent = document.getElementById('view-content');
-    let activeTab     = null;
+    let activeTab = null;
 
     tabs.forEach(btn => btn.addEventListener('click', () => {
       const tab = btn.dataset.tab;
@@ -393,8 +564,8 @@
       data.forEach(row => {
         const label = row['Employee'] || row['Name'] || Object.values(row)[0];
         const desc = Object.entries(row)
-          .filter(([k]) => !['Employee','Name'].includes(k))
-          .map(([,v]) => v).join(', ');
+          .filter(([k]) => !['Employee', 'Name'].includes(k))
+          .map(([, v]) => v).join(', ');
         const item = document.createElement('div');
         item.className = 'panel-item';
         item.innerHTML = `<span class="panel-label">${label}</span><span class="panel-desc">${desc}</span>`;
@@ -425,4 +596,5 @@
     }
   </script>
 </body>
+
 </html>
