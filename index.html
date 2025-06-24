@@ -414,20 +414,20 @@
         <div class="proj-card">
           <h3>Cloud Migration</h3>
           <div class="badges"><span class="badge">Cloud Security</span><span class="badge">Encryption</span></div>
-          <div class="avatars"><span class="avatar">AH</span><span class="avatar">JS</span><span
-              class="avatar">CX</span></div>
+          <div class="avatars"><span class="avatar">114</span><span class="avatar">091</span><span
+              class="avatar">003</span></div>
         </div>
         <div class="proj-card">
           <h3>Vulnerability Management</h3>
           <div class="badges"><span class="badge">Penetration</span><span class="badge">Risk Assessment</span></div>
-          <div class="avatars"><span class="avatar">TR</span><span class="avatar">JG</span><span
-              class="avatar">IW</span></div>
+          <div class="avatars"><span class="avatar">007</span><span class="avatar">101</span><span
+              class="avatar">192</span></div>
         </div>
         <div class="proj-card">
           <h3>Network Monitoring</h3>
           <div class="badges"><span class="badge">Network SOC</span><span class="badge">SIEM</span></div>
-          <div class="avatars"><span class="avatar">SM</span><span class="avatar">RS</span><span
-              class="avatar">TD</span></div>
+          <div class="avatars"><span class="avatar">076</span><span class="avatar">015</span><span
+              class="avatar">121</span></div>
         </div>
       </div>
     </div>
@@ -454,9 +454,9 @@
     new Chart(forecastCtx, {
       type: 'bar',
       data: {
-        labels: ['AI Security', 'DevSecOps', 'Threat Hunting', 'Risk Management'],
+        labels: ['SIEM', 'Risk assessment', 'Incident response', 'Data loss prevention'],
         datasets: [{
-          data: [65, 50, 40, 30],
+          data: [100, 52, 49, 19],
           backgroundColor: '#3b82f6',
           borderRadius: 8,
           barPercentage: .6,
@@ -474,25 +474,36 @@
     new Chart(radarCtx, {
       type: 'radar',
       data: {
-        labels: ['AI Sec', 'DevOps', 'Threat', 'Risk', 'Cloud', 'Network'],
+        labels: ['SIEM', 'Risk assessment', 'Incident response', 'Digital loss prevention', 'Digital forensics', 'Penetration testing'],
         datasets: [
           {
             label: 'Available skills',
-            data: [60, 50, 45, 40, 55, 50],
+            data: [87, 80, 65, 15, 13, 12],
             borderColor: '#3b82f6',
             backgroundColor: 'rgba(59,130,246,.2)',
             pointBackgroundColor: '#3b82f6'
           },
           {
             label: 'Projected skill needs',
-            data: [80, 70, 65, 60, 75, 70],
+            data: [100, 81, 75, 17, 15, 14],
             borderColor: '#fb7185',
             backgroundColor: 'rgba(251,113,133,.2)',
             pointBackgroundColor: '#fb7185'
           }
         ]
       },
-      options: { maintainAspectRatio: false }
+      options: {
+    maintainAspectRatio: false,
+    scales: {
+      r: {
+        pointLabels: {
+          font: {
+            size: 13 
+          }
+        }
+      }
+    }
+  }
     });
 
     /* Tab & CSV logic with scroll fix */
