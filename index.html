@@ -452,20 +452,30 @@
     /* Charts setup (unchanged) */
     const forecastCtx = document.getElementById('forecastChart').getContext('2d');
     new Chart(forecastCtx, {
-      type: 'bar',
-      data: {
-        labels: ['SIEM', 'Risk assessment', 'Incident response', 'Data loss prevention'],
-        datasets: [{
-          data: [100, 52, 49, 19],
-          backgroundColor: '#3b82f6',
-          borderRadius: 8,
-          barPercentage: .6,
-        }]
-      },
-      options: {
-        maintainAspectRatio: false
-      }
-    });
+  type: 'bar',
+  data: {
+    labels: ['SIEM', 'Risk assessment', 'Incident response', 'Data loss prevention'],
+    datasets: [{
+      label: '', // ← prevents 'undefined' label
+      data: [100, 52, 49, 19],
+      backgroundColor: '#3b82f6',
+      borderRadius: 8,
+      barPercentage: 0.6,
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    indexAxis: 'y', // ← makes chart horizontal
+    scales: {
+      x: { display: false },
+      y: { ticks: { font: { size: 14 } } }
+    },
+    plugins: {
+      legend: { display: false } // ← hides legend
+    }
+  }
+});
+   
 
     const radarCtx = document.getElementById('radarChart').getContext('2d');
     new Chart(radarCtx, {
