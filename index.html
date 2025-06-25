@@ -556,16 +556,21 @@
     function loadTabData(tab, titleText) {
       document.getElementById('view-title').textContent = titleText;
       viewContent.innerHTML = '<em>Loading…</em>';
-      const src = tab === 'upskill'
-        ? 'Employee_Skills.csv'
-        : 'Hierarchical_Project_Assignments.csv';
+      if (tab === 'hire') {
+  renderHireList();
+  return;
+}
 
-      Papa.parse(src, {
-        download: true,
-        header: true,
-        complete: res => {
-          if (tab === 'reassign') renderGrouped(res.data);
-          else renderList(res.data);
+const src = tab === 'upskill'
+  ? 'Employee_Skills.csv'
+  : 'Hierarchical_Project_Assignments.csv';
+
+Papa.parse(src, {
+  download: true,
+  header: true,
+  complete: res => {
+    if (tab === 'reassign') renderGrouped(res.data);
+    else renderList(res.data);
 
           // fade in new content
           viewContent.classList.add('content-fade-in');
@@ -579,7 +584,7 @@
 
     function renderList(data) {
       viewContent.innerHTML = '';
-      data.forEach(row => {
+      data.slice(0, 50).forEach(row => {
         const label = row['Employee'] || row['Name'] || Object.values(row)[0];
         const desc = Object.entries(row)
           .filter(([k]) => !['Employee', 'Name'].includes(k))
@@ -591,6 +596,27 @@
       });
       if (!data.length) viewContent.textContent = 'No data available.';
     }
+
+    function renderHireList() {
+  const candidates = [
+    { name: "Tomasz Rosiak", skills: "Organizational learning, Business processes, Mentoring" },
+    { name: "Albert Štěrba", skills: "Neurosurgery, Patient safety, Decision making under pressure" },
+    { name: "Ali Keshavarzi", skills: "Synthetic chemistry, Reaction mechanisms, Collaboration" },
+    { name: "Andrzej Krasnodębski", skills: "Machine learning, Data wrangling, Problem solving" },
+    { name: "Gbemisola Osadua", skills: "Legal analysis, Regulatory compliance, Persuasive communication" },
+    { name: "Liz Viloria", skills: "Textual interpretation, Literary theory, Empathy" },
+    { name: "Lizeth Paredes", skills: "Software architecture, Algorithm design, Critical thinking" },
+    { name: "Tea Sonicki", skills: "Genomic data analysis, Pipeline automation, Curiosity" }
+  ];
+
+  viewContent.innerHTML = '';
+  candidates.forEach(c => {
+    const item = document.createElement('div');
+    item.className = 'panel-item';
+    item.innerHTML = `<span class="panel-label">${c.name}</span><span class="panel-desc">${c.skills}</span>`;
+    viewContent.appendChild(item);
+  });
+}
 
     function renderGrouped(data) {
       viewContent.innerHTML = '';
